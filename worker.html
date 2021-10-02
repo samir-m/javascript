@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worker demo</title>
+</head>
+<body>
+    <script>
+        function getResult(){
+            if(window.Worker)
+            {
+                const myWorker=new Worker('worker.js');
+                
+                const message={addNum:{num1:5,num2:10}};
+                myWorker.postMessage(message);
+                    
+                myWorker.onmessage=function(e)
+                {
+                    console.log(e.data.result)
+                }
+            }
+        }
+        getResult()
+    </script>
+</body>
+</html>
